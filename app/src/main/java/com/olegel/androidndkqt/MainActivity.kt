@@ -21,6 +21,12 @@ class MainActivity : AppCompatActivity() {
     external fun stringFromJNI(): String
     external fun myCustomString(str:String): String
 
+    /**
+     *Methods send and receive data structures to NDK
+     */
+    external fun setUser(user: User)
+    external fun getUser():User
+
     companion object {
         // Used to load the 'native-lib' library on application startup.
         init {
