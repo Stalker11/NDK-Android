@@ -6,10 +6,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.speech.tts.TextToSpeech
 import com.olegel.androidndkqt.databinding.ActivityMainBinding
+import customviews.CallBackTTS
 import java.util.*
 
 
-class MainActivity : BaseActivity(), TextToSpeech.OnInitListener {
+class MainActivity : BaseActivity(), TextToSpeech.OnInitListener, CallBackTTS {
     private lateinit var tts: TextToSpeech
     private lateinit var binding: ActivityMainBinding
     private val openTTSSettingsAction = "com.android.settings.TTS_SETTINGS"
@@ -25,6 +26,8 @@ class MainActivity : BaseActivity(), TextToSpeech.OnInitListener {
         binding.mainActivitySayBtn.setOnClickListener {
             say(binding.mainActivityEditText.text.toString())
         }
+        binding.mainActivitySettingsBtn.setCallBack(this)
+
         binding.mainActivitySettingsBtn.setOnClickListener {
             intent = Intent()
             intent.apply {
@@ -87,4 +90,9 @@ class MainActivity : BaseActivity(), TextToSpeech.OnInitListener {
             tts.stop()
         }
     }
+
+    override fun call(string: String) {
+        say(string)
+    }
+
 }
