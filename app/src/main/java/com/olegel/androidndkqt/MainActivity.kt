@@ -23,7 +23,8 @@ class MainActivity : BaseActivity(), TextToSpeech.OnInitListener {
         binding.mainActivitySampleText.text = "${stringFromJNI()} ${myCustomString("Hi string")}"
         Handler().postDelayed({ setStr("JNI was called") }, 1000)
         binding.mainActivitySayBtn.setOnClickListener {
-            say(binding.mainActivityEditText.text.toString())
+            //TODO Uncomment before commit
+           // say(binding.mainActivityEditText.text.toString())
         }
         binding.mainActivitySettingsBtn.setOnClickListener {
             intent = Intent()
@@ -33,6 +34,11 @@ class MainActivity : BaseActivity(), TextToSpeech.OnInitListener {
             }
             startActivity(intent)
         }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        binding.mainActivitySampleText.text = intent?.action
     }
 
     /**
