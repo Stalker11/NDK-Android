@@ -3,5 +3,8 @@
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">185.189.184.7</domain>
         <domain includeSubdomains="true">109.68.41.148</domain>
+        <domain includeSubdomains="true">93.88.75.204</domain>
+        <domain includeSubdomains="true">app.live.112.events</domain>
+
     </domain-config>
 </network-security-config>
