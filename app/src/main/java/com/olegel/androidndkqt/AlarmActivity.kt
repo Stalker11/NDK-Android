@@ -32,7 +32,7 @@ import render.ViewRender
 class AlarmActivity : BaseActivity() {
     private var isInPipMode: Boolean = false
     private var isMinimized: Boolean = false
-    private val mUrl = "http://app.live.112.events/hls-ua/112hd_hi/index.m3u8"
+    private val mUrl = "https://nhkwlive-xjp.akamaized.net/hls/live/2003458/nhkwlive-xjp/index_2M.m3u8"
     private lateinit var player: SimpleExoPlayer
     private var videoPosition: Long = 0L
     private var isPIPModeeEnabled: Boolean = true
@@ -52,7 +52,8 @@ class AlarmActivity : BaseActivity() {
 
 
         mTrackSelector = DefaultTrackSelector(this)
-        changeTrackSelector(true)
+        changeTrackSelector(false)
+        mTrackSelector.parameters
         player = SimpleExoPlayer.Builder(this)
             .setTrackSelector(mTrackSelector)
             .build()
@@ -249,8 +250,8 @@ class AlarmActivity : BaseActivity() {
     private fun changeTrackSelector(isEnabledCC: Boolean) {
         mTrackSelector.setParameters(
             DefaultTrackSelector.ParametersBuilder(this)
-                .setRendererDisabled(C.TRACK_TYPE_TEXT, isEnabledCC)
                 .setRendererDisabled(C.TRACK_TYPE_VIDEO, isEnabledCC)
+                //.setRendererDisabled(C.TRACK_TYPE_VIDEO, isEnabledCC)
                 .build()
         )
     }
